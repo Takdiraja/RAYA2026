@@ -4,9 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Selamat Idul Fitri - Ucapan dari TAKDIR TAMRIN</title>
-  <meta name="description" content="Ucapan Selamat Hari Raya Idul Fitri 1446 H dari TAKDIR TAMRIN. Mohon Maaf Lahir dan Batin. Taqabbalallahu Minnaa Wa Minkum." />
+  <meta name="description" content="Ucapan Selamat Hari Raya Idul Fitri 7 H dari TAKDIR TAMRIN. Mohon Maaf Lahir dan Batin. Taqabbalallahu Minnaa Wa Minkum." />
   <meta property="og:title" content="Selamat Idul Fitri - TAKDIR TAMRIN" />
-  <meta property="og:description" content="Mohon Maaf Lahir & Batin. Eid Mubarak 1446 H." />
+  <meta property="og:description" content="Mohon Maaf Lahir & Batin. Eid Mubarak 1447 H." />
   <meta property="og:type" content="website" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌙</text></svg>" />
 
@@ -600,4 +600,505 @@
     }
     .stat-pill i { color: var(--gold); font-size: 0.9rem; }
 
-    /* ============================
+    /* ============================================
+       FOOTER
+    ============================================ */
+    .page-footer {
+      margin-top: 3rem;
+      text-align: center;
+      color: rgba(255,251,235,0.25);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      animation: fadeIn 1.5s 2s both;
+      z-index: 10;
+      position: relative;
+    }
+
+    /* ============================================
+       SCROLL INDICATOR
+    ============================================ */
+    .scroll-hint {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 20;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      opacity: 0;
+      animation: fadeIn 1s 2.5s both;
+      pointer-events: none;
+    }
+    .scroll-hint span { font-size: 0.65rem; color: rgba(252,211,77,0.4); letter-spacing: 0.1em; }
+    .scroll-dot {
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: var(--gold);
+      opacity: 0;
+      animation: scrollDot 1.8s ease-in-out infinite;
+    }
+    .scroll-dot:nth-child(3) { animation-delay: 0.3s; }
+    .scroll-dot:nth-child(4) { animation-delay: 0.6s; }
+    @keyframes scrollDot {
+      0%, 100% { opacity: 0; transform: translateY(0); }
+      50%       { opacity: 0.8; transform: translateY(6px); }
+    }
+
+    /* ============================================
+       NOTIFICATION TOAST
+    ============================================ */
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: linear-gradient(135deg, var(--emerald-deep), var(--emerald-mid));
+      border: 1px solid rgba(52,211,153,0.4);
+      border-radius: 12px;
+      padding: 0.8rem 1.6rem;
+      color: #fff;
+      font-size: 0.9rem;
+      z-index: 1000;
+      transition: transform 0.4s var(--transition), opacity 0.4s ease;
+      opacity: 0;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    /* ============================================
+       ANIMATIONS UTIL
+    ============================================ */
+    @keyframes fadeIn       { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes fadeSlideDown { from { opacity: 0; transform: translateY(-16px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeSlideUp   { from { opacity: 0; transform: translateY(16px);  } to { opacity: 1; transform: translateY(0); } }
+
+    /* ============================================
+       RESPONSIVE
+    ============================================ */
+    @media (max-width: 640px) {
+      .hero-card {
+        padding: 2.2rem 1.4rem;
+        border-radius: 18px;
+        margin: 1rem 0.5rem;
+      }
+      .hero-card::before, .hero-card::after,
+      .card-corner-tr, .card-corner-bl {
+        width: 50px; height: 50px;
+      }
+      .hero-title {
+        font-size: clamp(1.15rem, 6vw, 1.6rem);
+      }
+      .arabic-text { font-size: 1.2rem; }
+      .message-card { padding: 1.2rem 1.2rem; }
+      .cta-btn { padding: 0.9rem 1.8rem; font-size: 1rem; }
+      .crescent { width: 50px; height: 50px; top: 3vh; right: 4vw; }
+      .crescent::after { width: 43px; height: 43px; left: 9px; top: -6px; }
+      .stats-row { gap: 1rem; }
+    }
+
+    @media (min-width: 1024px) {
+      .hero-card { padding: 4rem 3.5rem; }
+    }
+
+    /* Touch devices */
+    @media (hover: none) {
+      .cta-btn:hover { transform: none; box-shadow: 0 4px 20px rgba(16,185,129,0.4); filter: none; }
+    }
+
+    /* ============================================
+       CONFETTI CANVAS
+    ============================================ */
+    #confetti-canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 100;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background Layers -->
+  <div class="bg-layer bg-sky" id="bgSky"></div>
+  <div class="bg-layer bg-mosque" id="bgMosque"></div>
+  <div class="bg-layer bg-glow"></div>
+
+  <!-- Particle Canvas (stars) -->
+  <canvas id="particle-canvas"></canvas>
+
+  <!-- Floating Decorative Elements -->
+  <div class="floaters" id="floaters"></div>
+
+  <!-- Crescent Moon -->
+  <div class="crescent" aria-hidden="true"></div>
+
+  <!-- Confetti Canvas -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast">
+    <i class="fas fa-check-circle"></i>
+    <span>Membuka WhatsApp...</span>
+  </div>
+
+  <!-- Main Content -->
+  <main class="page-wrap">
+    <article class="hero-card">
+      <div class="card-corner-tr" aria-hidden="true"></div>
+      <div class="card-corner-bl" aria-hidden="true"></div>
+      <div class="card-glow"     aria-hidden="true"></div>
+
+      <!-- Badge -->
+      <div class="top-badge">
+        <i class="fas fa-star-and-crescent"></i>
+        <span>1447 H · Idul Fitri</span>
+        <i class="fas fa-star-and-crescent"></i>
+      </div>
+
+      <!-- Arabic Text -->
+      <p class="arabic-text" title="Selamat Hari Raya Idul Fitri">
+        عيد الفطر المبارك
+      </p>
+
+      <!-- Divider -->
+      <div class="divider" aria-hidden="true">
+        <div class="divider-line"></div>
+        <span class="divider-icon"><i class="fas fa-mosque"></i></span>
+        <div class="divider-line"></div>
+      </div>
+
+      <!-- Main Title -->
+      <h1 class="hero-title">
+        Selamat Hari Raya Idul Fitri!<br>
+        Mohon Maaf Lahir &amp; Batin.<br>
+        Barokallohu Fi Umrik,<br>Aidil Fitri Mubaarak!
+      </h1>
+
+      <p class="hero-subtitle"><i class="fas fa-moon"></i> Minal Aidin Wal Faizin</p>
+      <p class="hero-year">✦ Eid Mubarak  H / 2025 M ✦</p>
+
+      <!-- Sender -->
+      <div class="sender-tag">
+        <i class="fas fa-user-circle" style="color:var(--emerald);"></i>
+        <span class="label">Dari</span>
+        <span class="sender-name">TAKDIR TAMRIN</span>
+      </div>
+
+      <!-- Message Body -->
+      <div class="message-card">
+        <p class="message-greeting">Assalamu'alaikum Warahmatullahi Wabarakatuh,</p>
+        <p class="message-body">
+          Di hari kemenangan yang penuh berkah ini, izinkan saya memohon maaf yang sebesar-besarnya
+          atas segala kesalahan sikap, ucapan, dan perbuatan lahir maupun batin yang pernah
+          menyakiti hati serta perasaan Anda. Semoga kita semua senantiasa diberkahi
+          oleh Allah SWT, diterima segala amal ibadah kita, dan dikembalikan kepada
+          fitrah yang suci.
+        </p>
+        <p class="message-closing">
+          <i class="fas fa-hands-praying"></i>&nbsp;
+          Taqabbalallahu Minnaa Wa Minkum — Eid Mubarak! 🌙
+        </p>
+      </div>
+
+      <!-- CTA -->
+      <div class="cta-wrap">
+        <div class="cta-btn-wrap">
+          <div class="cta-pulse"></div>
+          <button class="cta-btn" id="ctaBtn" aria-label="Bagikan ucapan ini via WhatsApp">
+            <i class="fab fa-whatsapp" style="font-size:1.3rem;"></i>
+            Bagikan Ucapan Ini
+            <i class="fas fa-paper-plane" style="font-size:0.9rem;"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="stats-row" aria-hidden="true">
+        <div class="stat-pill"><i class="fas fa-heart"></i> Dengan penuh keikhlasan</div>
+        <div class="stat-pill"><i class="fas fa-moon"></i> Ramadhan 1447 H</div>
+        <div class="stat-pill"><i class="fas fa-star"></i> Minal Aidin</div>
+      </div>
+    </article>
+
+    <footer class="page-footer">
+      <p>✦ Dibuat dengan ❤️ oleh TAKDIR TAMRIN · Idul Fitri 1447 H ✦</p>
+    </footer>
+  </main>
+
+  <!-- Scroll Hint -->
+  <div class="scroll-hint" aria-hidden="true">
+    <span>SCROLL</span>
+    <div class="scroll-dot"></div>
+    <div class="scroll-dot"></div>
+  </div>
+
+  <script>
+  /* ============================================
+     STAR PARTICLE SYSTEM
+  ============================================ */
+  (function() {
+    const canvas  = document.getElementById('particle-canvas');
+    const ctx     = canvas.getContext('2d');
+    let   stars   = [];
+    let   W, H;
+
+    function resize() {
+      W = canvas.width  = window.innerWidth;
+      H = canvas.height = window.innerHeight;
+    }
+
+    function randomStar() {
+      return {
+        x:    Math.random() * W,
+        y:    Math.random() * H * 0.75,
+        r:    Math.random() * 1.5 + 0.3,
+        a:    Math.random(),
+        da:   (Math.random() * 0.008 + 0.002) * (Math.random() < 0.5 ? 1 : -1),
+        gold: Math.random() < 0.25
+      };
+    }
+
+    function initStars(n) {
+      stars = [];
+      for (let i = 0; i < n; i++) stars.push(randomStar());
+    }
+
+    function drawStar(s) {
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = s.gold
+        ? `rgba(252,211,77,${s.a})`
+        : `rgba(255,255,255,${s.a})`;
+      ctx.fill();
+    }
+
+    let raf;
+    function animate() {
+      ctx.clearRect(0, 0, W, H);
+      stars.forEach(s => {
+        s.a += s.da;
+        if (s.a > 1 || s.a < 0.05) s.da *= -1;
+        drawStar(s);
+      });
+      raf = requestAnimationFrame(animate);
+    }
+
+    window.addEventListener('resize', () => {
+      resize();
+      initStars(Math.floor((W * H) / 8000));
+    });
+
+    resize();
+    initStars(Math.floor((W * H) / 8000));
+    animate();
+  })();
+
+  /* ============================================
+     FLOATING ELEMENTS (Lanterns + Ketupat)
+  ============================================ */
+  (function() {
+    const container = document.getElementById('floaters');
+
+    function makeLantern() {
+      const el = document.createElement('div');
+      const type = Math.random() < 0.5 ? 'gold' : 'green';
+      el.className = `lantern ${type}`;
+      el.innerHTML = `
+        <div class="lantern-string"></div>
+        <div class="lantern-body"></div>
+        <div class="lantern-tassel"></div>`;
+      el.style.left    = Math.random() * 95 + '%';
+      el.style.bottom  = '-60px';
+      const dur = (Math.random() * 14 + 12) + 's';
+      const delay = (Math.random() * 12) + 's';
+      el.style.animation = `floatLantern ${dur} ${delay} linear infinite`;
+      container.appendChild(el);
+    }
+
+    function makeKetupat() {
+      const el  = document.createElement('div');
+      const type = Math.random() < 0.5 ? 'gold' : 'green';
+      el.className = `ketupat ${type}`;
+      const size = Math.random() * 12 + 10;
+      el.style.width  = size + 'px';
+      el.style.height = size + 'px';
+      el.style.left   = Math.random() * 95 + '%';
+      el.style.bottom = '-30px';
+      const dur   = (Math.random() * 16 + 10) + 's';
+      const delay = (Math.random() * 15) + 's';
+      el.style.animation = `floatKetupat ${dur} ${delay} linear infinite`;
+      container.appendChild(el);
+    }
+
+    function makeStarDec() {
+      const el  = document.createElement('div');
+      el.className = 'star-dec';
+      const size = Math.random() * 10 + 6;
+      el.style.fontSize = size + 'px';
+      el.style.color = Math.random() < 0.5 ? 'rgba(252,211,77,0.6)' : 'rgba(16,185,129,0.5)';
+      el.style.left  = Math.random() * 95 + '%';
+      el.style.top   = Math.random() * 80 + '%';
+      el.style.animationDuration = (Math.random() * 3 + 2) + 's';
+      el.style.animationDelay   = (Math.random() * 4) + 's';
+      container.appendChild(el);
+    }
+
+    // Spawn elements
+    for (let i = 0; i < 12; i++) makeLantern();
+    for (let i = 0; i < 14; i++) makeKetupat();
+    for (let i = 0; i < 20; i++) makeStarDec();
+  })();
+
+  /* ============================================
+     PARALLAX SCROLL
+  ============================================ */
+  (function() {
+    const bgSky    = document.getElementById('bgSky');
+    const bgMosque = document.getElementById('bgMosque');
+
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      bgSky.style.transform    = `translateY(${y * 0.15}px)`;
+      bgMosque.style.transform = `translateY(${y * 0.35}px)`;
+    }, { passive: true });
+  })();
+
+  /* ============================================
+     CTA BUTTON: Confetti + Shake + WhatsApp
+  ============================================ */
+  (function() {
+    const btn = document.getElementById('ctaBtn');
+    const toast = document.getElementById('toast');
+
+    const waText = encodeURIComponent(
+      "🌙✨ *Selamat Hari Raya Idul Fitri! Mohon Maaf Lahir & Batin* ✨🌙\n\n" +
+      "Assalamu'alaikum Warahmatullahi Wabarakatuh,\n\n" +
+      "Di hari kemenangan yang penuh berkah ini, izinkan saya memohon maaf atas segala kesalahan sikap, ucapan, dan perbuatan lahir maupun batin.\n\n" +
+      "Semoga kita semua senantiasa diberkahi Allah SWT.\n\n" +
+      "*Taqabbalallahu Minnaa Wa Minkum*\n" +
+      "*Eid Mubarak 1447 H* 🕌\n\n" +
+      "Dari: *TAKDIR TAMRIN*"
+    );
+    const waURL = `https://wa.me/?text=${waText}`;
+
+    function fireConfetti() {
+      const colors = ['#FCD34D', '#10B981', '#ffffff', '#F59E0B', '#34d399', '#065F46'];
+      const origin = { x: 0.5, y: 0.6 };
+
+      // Center burst
+      confetti({
+        particleCount: 80,
+        spread: 70,
+        origin,
+        colors,
+        shapes: ['circle', 'square'],
+        scalar: 1.1
+      });
+
+      // Left + right jets
+      setTimeout(() => {
+        confetti({ particleCount: 40, angle: 60, spread: 55, origin: { x: 0.15, y: 0.65 }, colors });
+        confetti({ particleCount: 40, angle: 120, spread: 55, origin: { x: 0.85, y: 0.65 }, colors });
+      }, 150);
+
+      // Star shower
+      setTimeout(() => {
+        confetti({
+          particleCount: 30,
+          spread: 100,
+          origin: { x: 0.5, y: 0.3 },
+          colors,
+          shapes: ['star'],
+          scalar: 1.4
+        });
+      }, 300);
+    }
+
+    function showToast(msg) {
+      toast.querySelector('span').textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2800);
+    }
+
+    btn.addEventListener('click', () => {
+      // Shake
+      btn.classList.remove('shake');
+      void btn.offsetWidth; // reflow
+      btn.classList.add('shake');
+
+      // Confetti
+      fireConfetti();
+
+      // Toast
+      showToast('Membuka WhatsApp untuk berbagi...');
+
+      // Open WhatsApp after short delay
+      setTimeout(() => {
+        window.open(waURL, '_blank', 'noopener,noreferrer');
+      }, 600);
+
+      btn.addEventListener('animationend', () => btn.classList.remove('shake'), { once: true });
+    });
+
+    // Touch ripple
+    btn.addEventListener('touchstart', (e) => {
+      e.currentTarget.style.transform = 'scale(0.96)';
+    }, { passive: true });
+    btn.addEventListener('touchend', (e) => {
+      setTimeout(() => { e.currentTarget.style.transform = ''; }, 200);
+    }, { passive: true });
+  })();
+
+  /* ============================================
+     HOVER GLOW ON HERO TITLE
+  ============================================ */
+  (function() {
+    const title = document.querySelector('.hero-title');
+    title.addEventListener('mouseenter', () => {
+      title.style.transition = 'filter 0.4s ease';
+      title.style.filter = 'drop-shadow(0 0 16px rgba(252,211,77,0.55)) drop-shadow(0 0 32px rgba(16,185,129,0.35))';
+    });
+    title.addEventListener('mouseleave', () => {
+      title.style.filter = 'drop-shadow(0 2px 8px rgba(252,211,77,0.25))';
+    });
+  })();
+
+  /* ============================================
+     HIDE SCROLL HINT ON SCROLL
+  ============================================ */
+  (function() {
+    const hint = document.querySelector('.scroll-hint');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) hint.style.opacity = '0';
+      else hint.style.opacity = '';
+    }, { passive: true });
+  })();
+
+  /* ============================================
+     ENTRY CONFETTI (subtle welcome)
+  ============================================ */
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      confetti({
+        particleCount: 25,
+        spread: 80,
+        origin: { x: 0.5, y: 0.2 },
+        colors: ['#FCD34D', '#10B981', '#34d399'],
+        shapes: ['star'],
+        scalar: 0.9,
+        gravity: 0.5
+      });
+    }, 1800);
+  });
+  </script>
+</body>
+</html>
