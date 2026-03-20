@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Selamat Idul Fitri - Ucapan dari TAKDIR TAMRIN</title>
+  <meta name="description" content="Ucapan Selamat Hari Raya Idul Fitri 1446 H dari TAKDIR TAMRIN. Mohon Maaf Lahir dan Batin. Taqabbalallahu Minnaa Wa Minkum." />
+  <meta property="og:title" content="Selamat Idul Fitri - TAKDIR TAMRIN" />
+  <meta property="og:description" content="Mohon Maaf Lahir & Batin. Eid Mubarak 1446 H." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌙</text></svg>" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Naskh+Arabic:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- canvas-confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+
+  <style>
+    /* ============================================
+       CSS CUSTOM PROPERTIES
+    ============================================ */
+    :root {
+      --gold:        #FCD34D;
+      --gold-deep:   #F59E0B;
+      --gold-light:  #FEF3C7;
+      --emerald:     #10B981;
+      --emerald-deep:#065F46;
+      --emerald-mid: #059669;
+      --night:       #020617;
+      --night-mid:   #0F172A;
+      --night-soft:  #1E293B;
+      --cream:       #FFFBEB;
+      --white-glass: rgba(255,255,255,0.07);
+      --gold-glass:  rgba(252,211,77,0.12);
+      --transition:  cubic-bezier(0.34,1.56,0.64,1);
+    }
+
+    /* ============================================
+       RESET & BASE
+    ============================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Crimson Pro', Georgia, serif;
+      background-color: var(--night);
+      color: var(--cream);
+      overflow-x: hidden;
+      min-height: 100vh;
+      cursor: default;
+    }
+
+    /* ============================================
+       PARTICLE CANVAS
+    ============================================ */
+    #particle-canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ============================================
+       PARALLAX BACKGROUND LAYERS
+    ============================================ */
+    .bg-layer {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      will-change: transform;
+    }
+
+    /* Deep gradient sky */
+    .bg-sky {
+      z-index: 1;
+      background:
+        radial-gradient(ellipse 80% 50% at 50% 0%, #0d4f3c 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 80% 20%, #1a3a1a 0%, transparent 50%),
+        linear-gradient(180deg, #020617 0%, #071a0e 40%, #030c1a 100%);
+    }
+
+    /* Mosque silhouette */
+    .bg-mosque {
+      z-index: 2;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 500' preserveAspectRatio='xMidYMax meet'%3E%3Cdefs%3E%3ClinearGradient id='g1' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23065f46' stop-opacity='0.6'/%3E%3Cstop offset='1' stop-color='%23065f46' stop-opacity='0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg fill='url(%23g1)'%3E%3C!-- Main dome --%3E%3Cellipse cx='720' cy='210' rx='120' ry='130'/%3E%3Crect x='600' y='310' width='240' height='190'/%3E%3C!-- Left dome --%3E%3Cellipse cx='440' cy='260' rx='75' ry='80'/%3E%3Crect x='365' y='330' width='150' height='170'/%3E%3C!-- Right dome --%3E%3Cellipse cx='1000' cy='260' rx='75' ry='80'/%3E%3Crect x='925' y='330' width='150' height='170'/%3E%3C!-- Left minaret --%3E%3Crect x='270' y='160' width='28' height='340'/%3E%3Cellipse cx='284' cy='155' rx='22' ry='30'/%3E%3Cellipse cx='284' cy='125' rx='10' ry='14'/%3E%3C!-- Right minaret --%3E%3Crect x='1142' y='160' width='28' height='340'/%3E%3Cellipse cx='1156' cy='155' rx='22' ry='30'/%3E%3Cellipse cx='1156' cy='125' rx='10' ry='14'/%3E%3C!-- Small left minaret --%3E%3Crect x='140' y='220' width='20' height='280'/%3E%3Cellipse cx='150' cy='215' rx='16' ry='22'/%3E%3C!-- Small right minaret --%3E%3Crect x='1280' y='220' width='20' height='280'/%3E%3Cellipse cx='1290' cy='215' rx='16' ry='22'/%3E%3C!-- Ground wall --%3E%3Crect x='0' y='490' width='1440' height='20'/%3E%3Crect x='100' y='450' width='1240' height='50'/%3E%3C/g%3E%3C/svg%3E");
+      background-size: cover;
+      background-position: bottom center;
+      background-repeat: no-repeat;
+      bottom: 0;
+      top: auto;
+      height: 70%;
+    }
+
+    /* Glow behind mosque */
+    .bg-glow {
+      z-index: 3;
+      background: radial-gradient(ellipse 70% 30% at 50% 100%, rgba(16,185,129,0.18) 0%, transparent 70%);
+    }
+
+    /* ============================================
+       FLOATING DECORATIVE ELEMENTS
+    ============================================ */
+    .floaters {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 4;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    /* Lanterns */
+    .lantern {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      animation: floatLantern linear infinite;
+      filter: drop-shadow(0 0 10px currentColor);
+    }
+    .lantern-body {
+      width: 22px;
+      height: 30px;
+      border-radius: 4px 4px 6px 6px;
+      position: relative;
+    }
+    .lantern-body::before {
+      content: '';
+      position: absolute;
+      inset: 3px;
+      border-radius: 2px 2px 4px 4px;
+      opacity: 0.5;
+    }
+    .lantern-string {
+      width: 1px;
+      height: 18px;
+    }
+    .lantern-tassel {
+      width: 8px;
+      height: 10px;
+      clip-path: polygon(0 0, 100% 0, 80% 100%, 20% 100%);
+    }
+    /* Gold lanterns */
+    .lantern.gold .lantern-body  { background: var(--gold-deep); }
+    .lantern.gold .lantern-body::before { background: var(--gold); }
+    .lantern.gold .lantern-string { background: var(--gold); }
+    .lantern.gold .lantern-tassel { background: var(--gold); }
+    .lantern.gold { color: var(--gold); }
+    /* Green lanterns */
+    .lantern.green .lantern-body  { background: var(--emerald-deep); }
+    .lantern.green .lantern-body::before { background: var(--emerald); }
+    .lantern.green .lantern-string { background: var(--emerald); }
+    .lantern.green .lantern-tassel { background: var(--emerald); }
+    .lantern.green { color: var(--emerald); }
+
+    @keyframes floatLantern {
+      0%   { transform: translateY(0) rotate(-4deg);   opacity: 0; }
+      5%   { opacity: 1; }
+      50%  { transform: translateY(-30px) rotate(4deg); }
+      95%  { opacity: 1; }
+      100% { transform: translateY(-600px) rotate(-2deg); opacity: 0; }
+    }
+
+    /* Ketupat (diamond shapes) */
+    .ketupat {
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      transform: rotate(45deg);
+      animation: floatKetupat linear infinite;
+    }
+    .ketupat::before {
+      content: '';
+      position: absolute;
+      inset: 2px;
+      border: 1.5px solid currentColor;
+      opacity: 0.6;
+    }
+    .ketupat.gold  { background: rgba(252,211,77,0.15); color: var(--gold); border: 1.5px solid var(--gold); }
+    .ketupat.green { background: rgba(16,185,129,0.15); color: var(--emerald); border: 1.5px solid var(--emerald); }
+
+    @keyframes floatKetupat {
+      0%   { transform: rotate(45deg) translateY(0);    opacity: 0; }
+      8%   { opacity: 0.8; }
+      50%  { transform: rotate(225deg) translateY(-20px); }
+      92%  { opacity: 0.8; }
+      100% { transform: rotate(405deg) translateY(-500px); opacity: 0; }
+    }
+
+    /* Stars */
+    .star-dec {
+      position: absolute;
+      animation: twinkle ease-in-out infinite;
+    }
+    .star-dec::before {
+      content: '✦';
+      font-size: inherit;
+      color: inherit;
+      opacity: 0.7;
+    }
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.2; transform: scale(0.8); }
+      50%       { opacity: 1;   transform: scale(1.2); }
+    }
+
+    /* Crescent moon */
+    .crescent {
+      position: fixed;
+      top: 6vh;
+      right: 8vw;
+      z-index: 5;
+      width: 70px;
+      height: 70px;
+      pointer-events: none;
+      animation: moonGlow 4s ease-in-out infinite;
+    }
+    .crescent::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 40px 15px rgba(252,211,77,0.3);
+    }
+    .crescent::after {
+      content: '';
+      position: absolute;
+      top: -8px; left: 12px;
+      width: 60px; height: 60px;
+      border-radius: 50%;
+      background: var(--night);
+    }
+    @keyframes moonGlow {
+      0%, 100% { filter: drop-shadow(0 0 10px rgba(252,211,77,0.5)); }
+      50%       { filter: drop-shadow(0 0 25px rgba(252,211,77,0.9)); }
+    }
+
+    /* ============================================
+       MAIN LAYOUT
+    ============================================ */
+    .page-wrap {
+      position: relative;
+      z-index: 10;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem 4rem;
+    }
+
+    /* ============================================
+       HERO CARD
+    ============================================ */
+    .hero-card {
+      position: relative;
+      width: 100%;
+      max-width: 720px;
+      background: rgba(2, 6, 23, 0.72);
+      border: 1px solid rgba(252,211,77,0.25);
+      border-radius: 24px;
+      padding: 3rem 2.5rem;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      box-shadow:
+        0 0 0 1px rgba(16,185,129,0.1),
+        0 4px 40px rgba(0,0,0,0.5),
+        0 0 80px rgba(16,185,129,0.08),
+        inset 0 1px 0 rgba(252,211,77,0.1);
+      overflow: hidden;
+      text-align: center;
+      animation: cardReveal 1.2s var(--transition) both;
+    }
+
+    @keyframes cardReveal {
+      from { opacity: 0; transform: translateY(40px) scale(0.97); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    /* Corner ornaments */
+    .hero-card::before,
+    .hero-card::after {
+      content: '';
+      position: absolute;
+      width: 80px; height: 80px;
+      border-color: rgba(252,211,77,0.3);
+      border-style: solid;
+    }
+    .hero-card::before {
+      top: 16px; left: 16px;
+      border-width: 2px 0 0 2px;
+      border-radius: 8px 0 0 0;
+    }
+    .hero-card::after {
+      bottom: 16px; right: 16px;
+      border-width: 0 2px 2px 0;
+      border-radius: 0 0 8px 0;
+    }
+
+    /* Inner corner ornaments via wrapper */
+    .card-corner-tr,
+    .card-corner-bl {
+      position: absolute;
+      width: 80px; height: 80px;
+      border-color: rgba(252,211,77,0.3);
+      border-style: solid;
+      pointer-events: none;
+    }
+    .card-corner-tr { top: 16px; right: 16px; border-width: 2px 2px 0 0; border-radius: 0 8px 0 0; }
+    .card-corner-bl { bottom: 16px; left: 16px; border-width: 0 0 2px 2px; border-radius: 0 0 0 8px; }
+
+    /* Inner glow */
+    .card-glow {
+      position: absolute;
+      top: -60px; left: 50%;
+      transform: translateX(-50%);
+      width: 300px; height: 200px;
+      background: radial-gradient(ellipse, rgba(16,185,129,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* ============================================
+       TOP BADGE
+    ============================================ */
+    .top-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: linear-gradient(135deg, rgba(252,211,77,0.15), rgba(16,185,129,0.15));
+      border: 1px solid rgba(252,211,77,0.35);
+      border-radius: 100px;
+      padding: 0.35rem 1.1rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.8rem;
+      animation: fadeSlideDown 0.8s 0.3s var(--transition) both;
+    }
+    .top-badge i { font-size: 0.85rem; }
+
+    /* ============================================
+       ARABIC CALLIGRAPHY STYLE TEXT
+    ============================================ */
+    .arabic-text {
+      font-family: 'Noto Naskh Arabic', serif;
+      font-size: clamp(1.4rem, 4vw, 2rem);
+      color: var(--gold);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 0 30px rgba(252,211,77,0.4);
+      animation: fadeSlideDown 0.8s 0.5s var(--transition) both;
+      direction: rtl;
+    }
+
+    /* ============================================
+       DIVIDER
+    ============================================ */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 1.2rem 0;
+      animation: fadeIn 1s 0.7s both;
+    }
+    .divider-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(252,211,77,0.4), transparent);
+    }
+    .divider-icon { color: var(--gold); font-size: 1rem; opacity: 0.8; }
+
+    /* ============================================
+       MAIN TITLE
+    ============================================ */
+    .hero-title {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: clamp(1.4rem, 4.5vw, 2.6rem);
+      font-weight: 700;
+      line-height: 1.25;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, var(--gold) 0%, #fff8dc 40%, var(--emerald) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 2px 8px rgba(252,211,77,0.25));
+      animation: titleReveal 1s 0.6s var(--transition) both;
+    }
+
+    @keyframes titleReveal {
+      from { opacity: 0; transform: translateY(20px); filter: blur(8px) drop-shadow(0 2px 8px rgba(252,211,77,0.1)); }
+      to   { opacity: 1; transform: translateY(0);   filter: blur(0)  drop-shadow(0 2px 8px rgba(252,211,77,0.25)); }
+    }
+
+    .hero-title:hover {
+      animation: none;
+      filter: drop-shadow(0 0 20px rgba(252,211,77,0.6)) drop-shadow(0 0 40px rgba(16,185,129,0.4));
+      transition: filter 0.4s ease;
+    }
+
+    /* ============================================
+       SUBTITLE
+    ============================================ */
+    .hero-subtitle {
+      font-size: clamp(0.95rem, 2.5vw, 1.2rem);
+      color: var(--emerald);
+      letter-spacing: 0.06em;
+      margin-bottom: 0.3rem;
+      font-style: italic;
+      animation: fadeSlideDown 0.8s 0.9s var(--transition) both;
+    }
+    .hero-year {
+      font-size: 0.85rem;
+      color: rgba(252,211,77,0.6);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+      animation: fadeIn 1s 1s both;
+    }
+
+    /* ============================================
+       SENDER TAG
+    ============================================ */
+    .sender-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: linear-gradient(135deg, rgba(16,185,129,0.15), rgba(252,211,77,0.08));
+      border: 1px solid rgba(16,185,129,0.35);
+      border-radius: 12px;
+      padding: 0.6rem 1.4rem;
+      font-size: 1rem;
+      color: var(--cream);
+      margin-bottom: 2rem;
+      animation: fadeSlideDown 0.8s 1.1s var(--transition) both;
+    }
+    .sender-tag .label { color: rgba(255,251,235,0.5); font-size: 0.8rem; }
+    .sender-name { color: var(--gold); font-weight: 600; font-size: 1.1rem; }
+
+    /* ============================================
+       BODY TEXT
+    ============================================ */
+    .message-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(16,185,129,0.2);
+      border-radius: 16px;
+      padding: 1.5rem 1.8rem;
+      margin-bottom: 2rem;
+      text-align: left;
+      animation: fadeSlideUp 0.8s 1.2s var(--transition) both;
+      position: relative;
+    }
+    .message-card::before {
+      content: '\f10d';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      position: absolute;
+      top: -12px; left: 20px;
+      background: var(--night-mid);
+      padding: 0 8px;
+      color: rgba(252,211,77,0.4);
+      font-size: 1.2rem;
+    }
+
+    .message-greeting {
+      color: var(--gold);
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+    }
+
+    .message-body {
+      font-size: clamp(0.95rem, 2.2vw, 1.1rem);
+      line-height: 1.85;
+      color: rgba(255,251,235,0.85);
+    }
+
+    .message-closing {
+      margin-top: 1rem;
+      padding-top: 0.8rem;
+      border-top: 1px solid rgba(252,211,77,0.15);
+      color: var(--gold);
+      font-style: italic;
+      font-size: 1rem;
+    }
+
+    /* ============================================
+       CTA BUTTON
+    ============================================ */
+    .cta-wrap {
+      animation: fadeSlideUp 0.8s 1.4s var(--transition) both;
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.7rem;
+      padding: 1rem 2.5rem;
+      background: linear-gradient(135deg, var(--emerald-mid) 0%, var(--emerald) 50%, #34d399 100%);
+      border: none;
+      border-radius: 100px;
+      font-family: 'Crimson Pro', serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #fff;
+      cursor: pointer;
+      text-decoration: none;
+      letter-spacing: 0.03em;
+      box-shadow:
+        0 4px 20px rgba(16,185,129,0.4),
+        0 0 0 0 rgba(16,185,129,0.4);
+      transition:
+        transform 0.3s var(--transition),
+        box-shadow 0.3s ease,
+        filter 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(252,211,77,0.25) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .cta-btn:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow:
+        0 8px 35px rgba(16,185,129,0.55),
+        0 0 0 6px rgba(16,185,129,0.15);
+      filter: brightness(1.1);
+    }
+
+    .cta-btn:hover::before { opacity: 1; }
+
+    .cta-btn:active { transform: scale(0.97); }
+
+    .cta-btn.shake {
+      animation: shakeBurst 0.5s ease;
+    }
+
+    @keyframes shakeBurst {
+      0%   { transform: translateX(0) rotate(0); }
+      15%  { transform: translateX(-6px) rotate(-2deg); }
+      30%  { transform: translateX(6px) rotate(2deg); }
+      45%  { transform: translateX(-4px) rotate(-1deg); }
+      60%  { transform: translateX(4px) rotate(1deg); }
+      75%  { transform: translateX(-2px); }
+      100% { transform: translateX(0) rotate(0); }
+    }
+
+    /* Pulse ring */
+    .cta-btn-wrap {
+      position: relative;
+      display: inline-block;
+    }
+    .cta-pulse {
+      position: absolute;
+      inset: -8px;
+      border-radius: 100px;
+      border: 2px solid var(--emerald);
+      opacity: 0;
+      animation: pulsate 2.5s ease-out infinite 2s;
+    }
+    @keyframes pulsate {
+      0%   { opacity: 0.6; transform: scale(1); }
+      100% { opacity: 0;   transform: scale(1.18); }
+    }
+
+    /* ============================================
+       STATS ROW
+    ============================================ */
+    .stats-row {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+      animation: fadeIn 1s 1.6s both;
+    }
+    .stat-pill {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.82rem;
+      color: rgba(255,251,235,0.5);
+    }
+    .stat-pill i { color: var(--gold); font-size: 0.9rem; }
+
+    /* ============================
